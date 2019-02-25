@@ -1,0 +1,41 @@
+{
+  "cultureName": "es-AR",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "Title"
+    },
+    {
+      "type": "Table",
+      "dataSourceId": "datasource",
+      "columns": [
+        {
+          "field": "Name",
+          "title": "Nombre"
+        },
+        {
+          "field": "Description",
+          "title": "Descripción"
+        },
+        {
+          "field": "Price",
+          "title": "Precio",
+          "FormatSpecifier": "C"
+        }
+      ]
+    }
+  ],
+  "writersSettings": {
+    "delimitedTextReportWriter": {
+      "delimiter": ";"
+    },
+    "xlsxReportWriter": {
+      "formatTranslators": [
+        {
+          "from": "C",
+          "to": "$###,###,##0.00"
+        }
+      ]
+    }
+  }
+}
