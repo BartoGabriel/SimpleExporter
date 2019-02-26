@@ -268,3 +268,6 @@ paket-files/
 /SysMan.React.Web
 /src/SysMan.React.Web/.chrome
 /src/yarn.lock
+
+# VSCODE
+.vscode/*
