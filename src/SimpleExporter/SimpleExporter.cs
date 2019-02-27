@@ -28,7 +28,7 @@ namespace SimpleExporter
             };
         }
 
-        public void WriteReport(FileStream destination, ReportWriterBase writer)
+        public void WriteReport(Stream destination, ReportWriterBase writer)
         {
             writer.WriteReport(this, destination);
         }

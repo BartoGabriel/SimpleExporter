@@ -9,9 +9,9 @@ namespace SimpleExporter.Writer
     {
         protected CultureInfo CultureInfo { get; set; } = CultureInfo.CurrentCulture;
         protected SimpleExporter SimpleExporter { get; set; }
-        protected FileStream Destination { get; set; }
+        protected Stream Destination { get; set; }
 
-        public void WriteReport(SimpleExporter simpleExporter, FileStream destination)
+        public void WriteReport(SimpleExporter simpleExporter, Stream destination)
         {
             SimpleExporter = simpleExporter;
             Destination = destination;
