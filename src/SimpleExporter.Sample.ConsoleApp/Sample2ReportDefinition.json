@@ -1,0 +1,74 @@
+{
+  "cultureName": "es-AR",
+  "body": [
+    {
+      "id": "titleId",
+      "type": "TextBlock",
+      "text": "Title",
+      "size": "ExtraLarge",
+      "bold": true
+    },
+    {
+      "id": "subtitleId",
+      "type": "TextBlock",
+      "text": "Subtitle",
+      "size": "Large",
+      "italic": true
+    },
+    {
+      "type": "TextBlock",
+      "text": "A medium text",
+      "size": "Medium",
+      "underLine": true
+    },
+    {
+      "type": "TextBlock",
+      "text": "A default size text"
+    },
+    {
+      "type": "TextBlock",
+      "text": "A Small text",
+      "size": "Small"
+    },
+    {
+      "type": "TextBlock",
+      "text": "A Small text (bold, italic, under-line)",
+      "size": "Small",
+      "bold": true,
+      "italic": true,
+      "underLine": true
+    },
+    {
+      "type": "Table",
+      "dataSourceId": "datasource",
+      "columns": [
+        {
+          "field": "Name",
+          "title": "Nombre"
+        },
+        {
+          "field": "Description",
+          "title": "Descripción"
+        },
+        {
+          "field": "Price",
+          "title": "Precio",
+          "FormatSpecifier": "C"
+        }
+      ]
+    }
+  ],
+  "writersSettings": {
+    "delimitedTextReportWriter": {
+      "delimiter": ";"
+    },
+    "xlsxReportWriter": {
+      "formatTranslators": [
+        {
+          "from": "C",
+          "to": "$###,###,##0.00"
+        }
+      ]
+    }
+  }
+}

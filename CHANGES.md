@@ -1,3 +1,9 @@
+0.1.0-beta4
+ * Add Samples
+ * Add id to elements. Now you can change the TextBlock of text by calling the method:  report.SetTextBlock("elementId", "Other text for the sample"); 
+ * Add text size, bold, italic, underline to TextBlock
+ * Add style to excel table
+
 0.1.0-beta3
  * Migrate NET Core to NET Standard 2.0
  

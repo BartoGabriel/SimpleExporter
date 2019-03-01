@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{C3C94B0E-1E82-4066-B85A-074C2964F26A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleExporter.Sample.Console", "SimpleExporter.Sample.Console\SimpleExporter.Sample.Console.csproj", "{8FACD95F-64D1-4831-AA70-C22E734FB195}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleExporter.Sample.ConsoleApp", "SimpleExporter.Sample.ConsoleApp\SimpleExporter.Sample.ConsoleApp.csproj", "{8FACD95F-64D1-4831-AA70-C22E734FB195}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleExporter", "SimpleExporter\SimpleExporter.csproj", "{CE3967DC-6BFD-441F-B4F7-61F9B5010394}"
 EndProject

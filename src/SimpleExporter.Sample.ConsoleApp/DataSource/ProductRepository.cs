@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
-using SimpleExporter.Sample.Console.DataSource.Models;
+using SimpleExporter.Sample.ConsoleApp.DataSource.Models;
 
-namespace SimpleExporter.Sample.Console.DataSource
+namespace SimpleExporter.Sample.ConsoleApp.DataSource
 {
     public static class ProductRepository
     {

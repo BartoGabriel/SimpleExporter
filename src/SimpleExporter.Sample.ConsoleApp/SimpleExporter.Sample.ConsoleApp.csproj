@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <StartupObject>SimpleExporter.Sample.ConsoleApp.Program</StartupObject>
+    <RootNamespace>SimpleExporter.Sample.ConsoleApp</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Sample1ReportDefinition.json" />
+    <None Remove="Sample2ReportDefinition.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Sample2ReportDefinition.json" />
+    <EmbeddedResource Include="Sample1ReportDefinition.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleExporter.Writer.XlsxReportWriter\SimpleExporter.Writer.XlsxReportWriter.csproj" />
+    <ProjectReference Include="..\SimpleExporter\SimpleExporter.csproj" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+
+</Project>

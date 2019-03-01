@@ -27,9 +27,21 @@ namespace SimpleExporter.Definition.Elements
                 return types;
             });
 
+        private static HashSet<string> Ids { get; } = new HashSet<string>();
+
         public override bool CanRead => true;
 
         public override bool CanWrite => false;
+
+        public static void BeginCard()
+        {
+            Ids.Clear();
+        }
+
+        public static void EndCard()
+        {
+            Ids.Clear();
+        }
 
         public static void RegisterTypedElement<T>(string typeName = null)
             where T : TypedElement
@@ -75,6 +87,14 @@ namespace SimpleExporter.Definition.Elements
 
             if (TypedElementTypes.Value.TryGetValue(typeName, out var type))
             {
+                if (jObject.Value<string>("id") != null)
+                {
+                    var objectId = jObject.Value<string>("id");
+                    if (Ids.Contains(objectId))
+                        throw new Exception($"Duplicate 'id' found: '{objectId}'");
+                    Ids.Add(objectId);
+                }
+
                 var result = (TypedElement) Activator.CreateInstance(type);
                 try
                 {

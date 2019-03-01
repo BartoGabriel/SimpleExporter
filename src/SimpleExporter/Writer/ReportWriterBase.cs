@@ -1,5 +1,4 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using System.IO;
 using SimpleExporter.Definition.Elements;
 
@@ -26,8 +25,8 @@ namespace SimpleExporter.Writer
 
         protected TSetting GetSetting<TSetting>() where TSetting : IWriterSetting, new()
         {
-            var name = this.GetType().Name;
-            name = Char.ToLowerInvariant(name[0]) + name.Substring(1);
+            var name = GetType().Name;
+            name = char.ToLowerInvariant(name[0]) + name.Substring(1);
             return SimpleExporter.ReportDefinition.GetWriterSetting<TSetting>(name);
         }
 

@@ -15,28 +15,22 @@ namespace SimpleExporter.Definition
         public List<BaseElement> Body { get; set; }
 
         [XmlIgnore]
-        public Dictionary<string, IWriterSetting> WritersSettings { get; set; } = new Dictionary<string, IWriterSetting>();
+        public Dictionary<string, IWriterSetting> WritersSettings { get; set; } =
+            new Dictionary<string, IWriterSetting>();
 
-        [JsonProperty("writersSettings")] protected JObject WritersSettingsJson { get; private set; } = null;
+        [JsonProperty("writersSettings")] protected JObject WritersSettingsJson { get; private set; }
 
         public T GetWriterSetting<T>(string name) where T : IWriterSetting, new()
         {
             if (WritersSettingsJson != null)
             {
-                JsonSerializer serializer = new JsonSerializer();
-                return (T)serializer.Deserialize(new JTokenReader(WritersSettingsJson[name]), typeof(T));
+                var serializer = new JsonSerializer();
+                return (T) serializer.Deserialize(new JTokenReader(WritersSettingsJson[name]), typeof(T));
             }
-            else
-            {
-                if (WritersSettings.ContainsKey(name))
-                {
-                    return (T)WritersSettings[name];
-                }
-                else
-                {
-                    return new T();
-                }
-            }
+
+            if (WritersSettings.ContainsKey(name))
+                return (T) WritersSettings[name];
+            return new T();
         }
 
         /// <summary>

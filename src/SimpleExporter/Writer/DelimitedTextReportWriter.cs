@@ -19,13 +19,13 @@ namespace SimpleExporter.Writer
             {
                 if (bodyElement.GetType() == typeof(TextBlock))
                 {
-                    var textBlock = (TextBlock)bodyElement;
+                    var textBlock = (TextBlock) bodyElement;
                     builder.Append(textBlock.Text);
                 }
 
                 if (bodyElement.GetType() == typeof(Table))
                 {
-                    var table = (Table)bodyElement;
+                    var table = (Table) bodyElement;
 
                     if (table.IncludeHeader)
                     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SimpleExporter.Sample.Console.DataSource.Models
+namespace SimpleExporter.Sample.ConsoleApp.DataSource.Models
 {
     public class Product
     {
