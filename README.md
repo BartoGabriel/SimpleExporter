@@ -6,7 +6,7 @@ Simple Exporter allows defining the structure of the reports from a simple JSON 
 
 **This project started with the source from [DoddleReport](https://github.com/matthidinger/DoddleReport). It was a good project to start from.**
 
-##A Quick Example
+## A Quick Example
 SimpleExporter is installed from NuGet.
 
 ```
