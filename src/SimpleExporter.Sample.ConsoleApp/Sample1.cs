@@ -11,7 +11,7 @@ namespace SimpleExporter.Sample.ConsoleApp
     {
         public static void Run()
         {
-            var query = ProductRepository.GetAll();
+            var query = TestRepository.GetAllProducts();
 
             var reportDataSource = query.ToReportDataSource("Products");
             var reportDefinition = ReportDefinition.FromJson(

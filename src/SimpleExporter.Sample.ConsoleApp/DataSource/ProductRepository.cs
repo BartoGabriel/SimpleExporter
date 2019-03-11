@@ -6,9 +6,9 @@ using SimpleExporter.Sample.ConsoleApp.DataSource.Models;
 
 namespace SimpleExporter.Sample.ConsoleApp.DataSource
 {
-    public static class ProductRepository
+    public static class TestRepository
     {
-        public static List<Product> GetAll()
+        public static List<Product> GetAllProducts()
         {
             var rand = new Random();
             return Enumerable.Range(1, 200)
@@ -26,23 +26,19 @@ namespace SimpleExporter.Sample.ConsoleApp.DataSource
                 .ToList();
         }
 
-        public static IEnumerable<ExpandoObject> GetAllExpando()
+        public static List<Person> GetAllPerson()
         {
-            foreach (var product in GetAll())
-            {
-                dynamic item = new ExpandoObject();
-
-                item.Id = product.Id;
-                item.Name = product.Name;
-                item.Description = product.Description + " (dynamic)";
-                item.Price = product.Price;
-                item.OrderCount = product.OrderCount;
-                item.LastPuchase = product.LastPurchase;
-                item.UnitsInStock = product.UnitsInStock;
-                item.LowStock = product.LowStock;
-
-                yield return item;
-            }
+            var rand = new Random();
+            return Enumerable.Range(1, 200)
+                .Select(i => new Person
+                {
+                    FirstName = "FirstName" + i,
+                    LastName = "LastName" + i,
+                    BirthDate = DateTime.Now.AddDays(rand.Next(1000)),
+                    FileNumber = rand.Next(1000),
+                    Height = rand.NextDouble() * 100
+                })
+                .ToList();
         }
     }
 }

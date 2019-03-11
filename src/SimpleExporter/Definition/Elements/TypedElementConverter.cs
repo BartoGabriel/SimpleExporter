@@ -33,12 +33,7 @@ namespace SimpleExporter.Definition.Elements
 
         public override bool CanWrite => false;
 
-        public static void BeginCard()
-        {
-            Ids.Clear();
-        }
-
-        public static void EndCard()
+        public static void ClearIds()
         {
             Ids.Clear();
         }

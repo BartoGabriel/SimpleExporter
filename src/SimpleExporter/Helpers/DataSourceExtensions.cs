@@ -14,13 +14,14 @@ namespace SimpleExporter.Helpers
             foreach (var tableDefinitionColumn in tableDefinition.Columns)
             {
                 var dataType = source.Fields[tableDefinitionColumn.Field].DataType;
-                if (dataType == typeof(DateTime?))
+                if (dataType.IsGenericType && dataType.GetGenericTypeDefinition() == typeof(Nullable<>))
                 {
-                    tb.Columns.Add(tableDefinitionColumn.Field, typeof(DateTime));
+                    dataType = Nullable.GetUnderlyingType(dataType);
+                    tb.Columns.Add(tableDefinitionColumn.Field, dataType).AllowDBNull = true;
                 }
                 else
                 {
-                    tb.Columns.Add(tableDefinitionColumn.Field, source.Fields[tableDefinitionColumn.Field].DataType);
+                    tb.Columns.Add(tableDefinitionColumn.Field, dataType);
                 }
             }
 

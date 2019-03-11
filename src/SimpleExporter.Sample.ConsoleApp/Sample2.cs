@@ -10,8 +10,8 @@ namespace SimpleExporter.Sample.ConsoleApp
     internal static class Sample2
     {
         public static void Run()
-        {
-            var query = ProductRepository.GetAll();
+        { 
+            var query = TestRepository.GetAllProducts();
 
             var reportDataSource = query.ToReportDataSource("Products");
             var reportDefinition = ReportDefinition.FromJson(

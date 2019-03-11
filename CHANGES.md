@@ -1,3 +1,7 @@
+0.1.0-beta6
+ * Fix: nullables
+ * Add Sample 3
+ 
 0.1.0-beta5
  * Fix: DateTime nullable
  * Fix: Excel Data Format

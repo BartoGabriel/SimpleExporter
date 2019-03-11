@@ -25,6 +25,14 @@ namespace SimpleExporter.Sample.ConsoleApp
             Console.WriteLine("-----------------");
             Console.WriteLine();
 
+            //Sample3
+            Console.WriteLine("-----------------");
+            Console.WriteLine("Running Sample 3");
+            Sample3.Run();
+            Console.WriteLine("Sample 3 Finish");
+            Console.WriteLine("-----------------");
+            Console.WriteLine();
+
             Console.WriteLine("Sample App Finish");
             Console.ReadLine();
         }

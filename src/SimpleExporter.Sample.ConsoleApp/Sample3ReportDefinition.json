@@ -1,0 +1,37 @@
+{
+  "cultureName": "es-AR",
+  "body": [
+    {
+      "id": "titleId",
+      "type": "TextBlock",
+      "text": "Title",
+      "size": "Large",
+      "bold": true
+    },
+    {
+      "id": "subtitleId",
+      "type": "TextBlock",
+      "text": "Subtitle",
+      "italic": true
+    },
+    {
+      "type": "Table",
+      "dataSourceId": "datasource",
+      "columns": [
+      ]
+    }
+  ],
+  "writersSettings": {
+    "delimitedTextReportWriter": {
+      "delimiter": ";"
+    },
+    "xlsxReportWriter": {
+      "formatTranslators": [
+        {
+          "from": "C",
+          "to": "$###,###,##0.00"
+        }
+      ]
+    }
+  }
+}
