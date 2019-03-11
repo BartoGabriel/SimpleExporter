@@ -53,7 +53,7 @@ namespace SimpleExporter.Writer.XlsxReportWriter
                         ws.Cells[rowPosition, i + 1].Value = tableColumn.Title;
 
                         if (!string.IsNullOrWhiteSpace(tableColumn.FormatSpecifier))
-                            ws.Cells[rowPosition + 1, i + 1, datatable.Rows.Count + 1, i + 1].Style.Numberformat.Format
+                            ws.Cells[rowPosition + 1, i + 1, rowPosition + datatable.Rows.Count, i + 1].Style.Numberformat.Format
                                 = GetExcelFormat(tableColumn.FormatSpecifier);
                     }
 

@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using SimpleExporter.Definition.Elements;
 using SimpleExporter.Source;
 
@@ -11,7 +12,18 @@ namespace SimpleExporter.Helpers
             var tb = new DataTable(source.Id);
 
             foreach (var tableDefinitionColumn in tableDefinition.Columns)
-                tb.Columns.Add(tableDefinitionColumn.Field, source.Fields[tableDefinitionColumn.Field].DataType);
+            {
+                var dataType = source.Fields[tableDefinitionColumn.Field].DataType;
+                if (dataType == typeof(DateTime?))
+                {
+                    tb.Columns.Add(tableDefinitionColumn.Field, typeof(DateTime));
+                }
+                else
+                {
+                    tb.Columns.Add(tableDefinitionColumn.Field, source.Fields[tableDefinitionColumn.Field].DataType);
+                }
+            }
+
 
             foreach (var item in source.Data)
             {
