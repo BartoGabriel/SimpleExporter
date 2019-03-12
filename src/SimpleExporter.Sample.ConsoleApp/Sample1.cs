@@ -3,6 +3,7 @@ using System.IO;
 using SimpleExporter.Definition;
 using SimpleExporter.Sample.ConsoleApp.DataSource;
 using SimpleExporter.Writer;
+using SimpleExporter.Writer.PdfReportWriter;
 using SimpleExporter.Writer.XlsxReportWriter;
 
 namespace SimpleExporter.Sample.ConsoleApp
@@ -34,6 +35,14 @@ namespace SimpleExporter.Sample.ConsoleApp
                 var writer = new XlsxReportWriter();
                 report.WriteReport(fs, writer);
                 Console.WriteLine("(Xlsx) Sample 1 created: {0}", fs.Name);
+            }
+
+            //PDF
+            using (var fs = File.Create("Sample1.pdf"))
+            {
+                var writer = new PdfReportWriter();
+                report.WriteReport(fs, writer);
+                Console.WriteLine("(PDF) Sample 1 created: {0}", fs.Name);
             }
         }
     }

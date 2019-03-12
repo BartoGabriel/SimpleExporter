@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SimpleExporter.Writer.PdfReportWriter\SimpleExporter.Writer.PdfReportWriter.csproj" />
     <ProjectReference Include="..\SimpleExporter.Writer.XlsxReportWriter\SimpleExporter.Writer.XlsxReportWriter.csproj" />
     <ProjectReference Include="..\SimpleExporter\SimpleExporter.csproj" />
   </ItemGroup>
