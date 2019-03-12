@@ -10,9 +10,11 @@
   <ItemGroup>
     <None Remove="Sample1ReportDefinition.json" />
     <None Remove="Sample2ReportDefinition.json" />
+    <None Remove="Sample3ReportDefinition.json" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Sample3ReportDefinition.json" />
     <EmbeddedResource Include="Sample2ReportDefinition.json" />
     <EmbeddedResource Include="Sample1ReportDefinition.json" />
   </ItemGroup>

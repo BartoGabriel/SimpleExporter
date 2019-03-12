@@ -54,7 +54,13 @@
           "field": "Price",
           "title": "Precio",
           "FormatSpecifier": "C"
+        },
+        {
+          "field": "LastPurchase",
+          "title": "Última Compra",
+          "FormatSpecifier": "dd/MM/yyyy"
         }
+        
       ]
     }
   ],

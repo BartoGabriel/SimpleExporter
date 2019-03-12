@@ -18,7 +18,8 @@ namespace SimpleExporter.Definition
         public Dictionary<string, IWriterSetting> WritersSettings { get; set; } =
             new Dictionary<string, IWriterSetting>();
 
-        [JsonProperty("writersSettings")] protected JObject WritersSettingsJson { get; private set; }
+        [JsonProperty("writersSettings")]
+        protected JObject WritersSettingsJson { get; private set; }
 
         public T GetWriterSetting<T>(string name) where T : IWriterSetting, new()
         {
@@ -40,6 +41,7 @@ namespace SimpleExporter.Definition
         /// <returns></returns>
         public static ReportDefinition FromJson(string json)
         {
+            TypedElementConverter.ClearIds();
             return JsonConvert.DeserializeObject<ReportDefinition>(json);
         }
     }

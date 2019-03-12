@@ -1,3 +1,11 @@
+0.1.0-beta6
+ * Fix: nullables
+ * Add Sample 3
+ 
+0.1.0-beta5
+ * Fix: DateTime nullable
+ * Fix: Excel Data Format
+
 0.1.0-beta4
  * Add Samples
  * Add id to elements. Now you can change the TextBlock of text by calling the method:  report.SetTextBlock("elementId", "Other text for the sample"); 

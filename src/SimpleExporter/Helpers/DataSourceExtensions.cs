@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using SimpleExporter.Definition.Elements;
 using SimpleExporter.Source;
 
@@ -11,7 +12,19 @@ namespace SimpleExporter.Helpers
             var tb = new DataTable(source.Id);
 
             foreach (var tableDefinitionColumn in tableDefinition.Columns)
-                tb.Columns.Add(tableDefinitionColumn.Field, source.Fields[tableDefinitionColumn.Field].DataType);
+            {
+                var dataType = source.Fields[tableDefinitionColumn.Field].DataType;
+                if (dataType.IsGenericType && dataType.GetGenericTypeDefinition() == typeof(Nullable<>))
+                {
+                    dataType = Nullable.GetUnderlyingType(dataType);
+                    tb.Columns.Add(tableDefinitionColumn.Field, dataType).AllowDBNull = true;
+                }
+                else
+                {
+                    tb.Columns.Add(tableDefinitionColumn.Field, dataType);
+                }
+            }
+
 
             foreach (var item in source.Data)
             {
