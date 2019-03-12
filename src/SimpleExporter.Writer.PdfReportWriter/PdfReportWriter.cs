@@ -6,9 +6,7 @@ using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
 using SimpleExporter.Definition.Elements;
-using SimpleExporter.Helpers;
-using System.Data;
-using System.Linq;
+using Table = SimpleExporter.Definition.Elements.Table;
 
 namespace SimpleExporter.Writer.PdfReportWriter
 {
@@ -20,21 +18,21 @@ namespace SimpleExporter.Writer.PdfReportWriter
         {
             Setting = GetSetting<PdfReportWriterSetting>();
 
-            PdfWriter writer = new PdfWriter(Destination);
+            var writer = new PdfWriter(Destination);
 
             //Initialize document
-            PdfDocument pdfDoc = new PdfDocument(writer);
-            Document doc = new Document(pdfDoc);
+            var pdfDoc = new PdfDocument(writer);
+            var doc = new Document(pdfDoc);
 
             doc.SetFontSize(11);
-            PdfFont font = PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN);
+            var font = PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN);
             doc.SetFont(font);
 
             foreach (var bodyElement in SimpleExporter.ReportDefinition.Body)
             {
                 if (bodyElement.GetType() == typeof(TextBlock))
                 {
-                    var textBlock = (TextBlock)bodyElement;
+                    var textBlock = (TextBlock) bodyElement;
                     var paragraph = new Paragraph(textBlock.Text);
                     paragraph.SetFontSize(GetFontSize(textBlock.Size));
 
@@ -51,50 +49,31 @@ namespace SimpleExporter.Writer.PdfReportWriter
                     doc.Add(paragraph);
                 }
 
-                if (bodyElement.GetType() == typeof(Definition.Elements.Table))
+                if (bodyElement.GetType() == typeof(Table))
                 {
-                    var table = (Definition.Elements.Table)bodyElement;
-                    var datatable = SimpleExporter.ReportDataSource.ToDataTable(table);
-                    Cell cell = null;
-                    iText.Layout.Element.Table pdfTable = new iText.Layout.Element.Table(datatable.Columns.Count);
+                    var table = (Table) bodyElement;
+                    var pdfTable = new iText.Layout.Element.Table(table.Columns.Count);
 
                     // render header cells
-                    foreach (var dc in datatable.Columns.OfType<DataColumn>())
+                    foreach (var tableColumn in table.Columns)
                     {
-                        cell = new Cell(1, 1)
-                                .SetTextAlignment(TextAlignment.CENTER)
-                                .SetBackgroundColor(new DeviceRgb(0, 0, 0))
-                                .SetFontColor(new DeviceRgb(255, 255, 255))
-                                .Add(new Paragraph(dc.ColumnName.ToString()));
+                        var headerCell = new Cell(1, 1)
+                            .SetTextAlignment(TextAlignment.CENTER)
+                            .SetBackgroundColor(new DeviceRgb(0, 0, 0))
+                            .SetFontColor(new DeviceRgb(255, 255, 255))
+                            .Add(new Paragraph(tableColumn.Title));
 
-                        pdfTable.AddCell(cell);
+                        pdfTable.AddCell(headerCell);
                     }
 
-                    // render data rows
-                    foreach (var dr in datatable.Rows.OfType<DataRow>())
+                    foreach (var data in SimpleExporter.ReportDataSource.Data)
+                    foreach (var tableColumn in table.Columns)
                     {
-                        var colIdx = 0;
-                        foreach (var field in dr.ItemArray)
-                        {
-                            string value = "";
-                            if (!string.IsNullOrWhiteSpace(table.Columns[colIdx].FormatSpecifier))
-                            {
-                                string formatPattern = GetFormat(table.Columns[colIdx].FormatSpecifier);
-                                value = string.Format("{0:" + formatPattern + "}", field);
-                            }
-                            else
-                            {
-                                value = field.ToString();
-                            }
+                        var rowCell = new Cell(1, 1)
+                            .SetTextAlignment(TextAlignment.CENTER)
+                            .Add(new Paragraph(GetRowDataFormatted(data, tableColumn)));
 
-                            cell = new Cell(1, 1)
-                                .SetTextAlignment(TextAlignment.CENTER)
-                                .Add(new Paragraph(value));
-
-                            pdfTable.AddCell(cell);
-
-                            colIdx++;
-                        }
+                        pdfTable.AddCell(rowCell);
                     }
 
                     doc.Add(pdfTable);
@@ -126,14 +105,6 @@ namespace SimpleExporter.Writer.PdfReportWriter
             }
 
             return 11;
-        }
-
-        private string GetFormat(string formatSpecifier)
-        {
-            var translate = Setting.FormatTranslators.SingleOrDefault(f => f.From.Equals(formatSpecifier));
-            if (translate != null) return translate.To;
-
-            return formatSpecifier;
         }
     }
 }

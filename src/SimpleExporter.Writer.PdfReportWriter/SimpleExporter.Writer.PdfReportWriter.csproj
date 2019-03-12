@@ -2,6 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>0.1.0</Version>
+    <AssemblyVersion>0.1.0.7</AssemblyVersion>
+    <FileVersion>0.1.0.7</FileVersion>
+    <Authors>Gabriel Bartolazzi</Authors>
+    <Company>BechIT</Company>
+    <Description>Simple Exporter is an easy report library that generate reports (Excel, CSV, PDF, etc)  from any IEnumerable datasource.
+Simple Exporter allows defining the structure of the reports from a simple JSON or a dotnet object.</Description>
+    <PackageLicenseUrl>https://github.com/BartoGabriel/SimpleExporter/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/BartoGabriel/SimpleExporter</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/BartoGabriel/SimpleExporter</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

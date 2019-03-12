@@ -1,3 +1,7 @@
+0.1.0
+ * Add PDF Format
+ * Minor bug fixes
+
 0.1.0-beta6
  * Fix: nullables
  * Add Sample 3

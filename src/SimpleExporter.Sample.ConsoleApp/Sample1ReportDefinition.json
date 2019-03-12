@@ -36,14 +36,6 @@
           "to": "$###,###,##0.00"
         }
       ]
-    },
-    "pdfReportWriter": {
-      "formatTranslators": [
-        {
-          "from": "C",
-          "to": "$###,###,##0.00"
-        }
-      ]
     }
   }
 }

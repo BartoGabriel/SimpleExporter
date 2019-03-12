@@ -23,7 +23,7 @@ namespace SimpleExporter.Definition
 
         public T GetWriterSetting<T>(string name) where T : IWriterSetting, new()
         {
-            if (WritersSettingsJson != null)
+            if (WritersSettingsJson != null && WritersSettingsJson.ContainsKey(name))
             {
                 var serializer = new JsonSerializer();
                 return (T) serializer.Deserialize(new JTokenReader(WritersSettingsJson[name]), typeof(T));
