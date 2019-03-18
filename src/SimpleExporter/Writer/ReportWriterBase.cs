@@ -32,7 +32,10 @@ namespace SimpleExporter.Writer
 
         protected string GetRowDataFormatted(object data, Column tableColumn)
         {
-            var internalValue = data.GetType().GetProperty(tableColumn.Field).GetValue(data, null);
+            var internalValue = data.GetType().GetProperty(tableColumn.Field)?.GetValue(data, null);
+
+            if (internalValue == null)
+                return "";
 
             if (string.IsNullOrWhiteSpace(tableColumn.FormatSpecifier)) return internalValue.ToString();
             var format = $"{{0:{tableColumn.FormatSpecifier}}}";

@@ -1,3 +1,6 @@
+0.1.1
+ * Fix: null values
+
 0.1.0
  * Add PDF Format
  * Minor bug fixes

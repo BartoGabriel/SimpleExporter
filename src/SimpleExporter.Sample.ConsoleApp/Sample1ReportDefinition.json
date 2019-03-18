@@ -21,6 +21,10 @@
           "field": "Price",
           "title": "Precio",
           "FormatSpecifier": "C"
+        },
+        {
+          "field": "LowStock",
+          "title": "# Stock Bajo"
         }
       ]
     }
