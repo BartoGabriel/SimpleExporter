@@ -1,10 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.1.1</Version>
-    <AssemblyVersion>0.1.1.0</AssemblyVersion>
-    <FileVersion>0.1.1.0</FileVersion>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyVersion>0.2.0.0</AssemblyVersion>
+    <FileVersion>0.2.0.0</FileVersion>
+    <Version>0.2.0</Version>
     <Authors>Gabriel Bartolazzi</Authors>
     <Company>BechIT</Company>
     <Description>Simple Exporter is an easy report library that generate reports (Excel, CSV, PDF, etc)  from any IEnumerable datasource.
@@ -15,7 +17,7 @@ Simple Exporter allows defining the structure of the reports from a simple JSON 
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="itext7" Version="7.1.5" />
+    <PackageReference Include="itext7" Version="7.2.6" />
   </ItemGroup>
 
   <ItemGroup>

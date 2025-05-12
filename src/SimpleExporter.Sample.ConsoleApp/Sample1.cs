@@ -38,7 +38,7 @@ namespace SimpleExporter.Sample.ConsoleApp
             }
 
             //PDF
-            using (var fs = File.Create("Sample1.pdf"))
+            using (FileStream fs = new FileStream("Sample1.pdf", FileMode.Create, FileAccess.Write, FileShare.None))
             {
                 var writer = new PdfReportWriter();
                 report.WriteReport(fs, writer);
