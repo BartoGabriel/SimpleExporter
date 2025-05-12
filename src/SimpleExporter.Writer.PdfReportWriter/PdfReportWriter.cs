@@ -17,51 +17,46 @@ namespace SimpleExporter.Writer.PdfReportWriter
         protected override void WriteReport()
         {
             Setting = GetSetting<PdfReportWriterSetting>();
-
-            var writer = new PdfWriter(Destination);
-
             //Initialize document
-            var pdfDoc = new PdfDocument(writer);
+            PdfDocument pdfDoc = new PdfDocument(new PdfWriter(Destination));
             var doc = new Document(pdfDoc);
 
             doc.SetFontSize(11);
-            var font = PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN);
-            doc.SetFont(font);
+            var baseFont = PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN);
+            doc.SetFont(baseFont);
 
             foreach (var bodyElement in SimpleExporter.ReportDefinition.Body)
             {
-                if (bodyElement.GetType() == typeof(TextBlock))
+                if (bodyElement is TextBlock textBlock)
                 {
-                    var textBlock = (TextBlock) bodyElement;
                     var paragraph = new Paragraph(textBlock.Text);
                     paragraph.SetFontSize(GetFontSize(textBlock.Size));
 
-                    if (textBlock.Bold)
-                        paragraph.SetBold();
-
-                    if (textBlock.Italic)
-                        paragraph.SetItalic();
+                    // Configurar fuente según estilo
+                    PdfFont styleFont = GetStyleFont(baseFont, textBlock.Bold, textBlock.Italic); // Nuevo método
+                    paragraph.SetFont(styleFont);
 
                     if (textBlock.UnderLine)
-                        paragraph.SetUnderline();
+                        paragraph.SetUnderline(1f, 0f); // Cambio aquí con parámetros
 
-                    //Add paragraph to the document
                     doc.Add(paragraph);
                 }
 
-                if (bodyElement.GetType() == typeof(Table))
+                if (bodyElement is Table table)
                 {
-                    var table = (Table) bodyElement;
-                    var pdfTable = new iText.Layout.Element.Table(table.Columns.Count);
+                    var pdfTable = new iText.Layout.Element.Table(table.Columns.Count, true);
 
-                    // render header cells
                     foreach (var tableColumn in table.Columns)
                     {
+                        var headerParagraph = new Paragraph(tableColumn.Title).SetFont(
+                            PdfFontFactory.CreateFont(StandardFonts.TIMES_BOLD)
+                        ); // Fuente en negrita
+
                         var headerCell = new Cell(1, 1)
                             .SetTextAlignment(TextAlignment.CENTER)
-                            .SetBackgroundColor(new DeviceRgb(0, 0, 0))
-                            .SetFontColor(new DeviceRgb(255, 255, 255))
-                            .Add(new Paragraph(tableColumn.Title));
+                            .SetBackgroundColor(DeviceRgb.BLACK)
+                            .SetFontColor(DeviceRgb.WHITE)
+                            .Add(headerParagraph); // Cambio en estructura de texto
 
                         pdfTable.AddCell(headerCell);
                     }
@@ -84,27 +79,32 @@ namespace SimpleExporter.Writer.PdfReportWriter
             doc.Close();
         }
 
+        // Nuevo método para manejar estilos tipográficos
+        private PdfFont GetStyleFont(PdfFont baseFont, bool bold, bool italic)
+        {
+            if (bold && italic)
+                return PdfFontFactory.CreateFont(StandardFonts.TIMES_BOLDITALIC);
+
+            if (bold)
+                return PdfFontFactory.CreateFont(StandardFonts.TIMES_BOLD);
+
+            if (italic)
+                return PdfFontFactory.CreateFont(StandardFonts.TIMES_ITALIC);
+
+            return baseFont;
+        }
+
         private float GetFontSize(TextSize textSize)
         {
-            switch (textSize)
+            return textSize switch
             {
-                case TextSize.ExtraLarge:
-                    return 24;
-
-                case TextSize.Large:
-                    return 18;
-
-                case TextSize.Medium:
-                    return 14;
-
-                case TextSize.Default:
-                    return 11;
-
-                case TextSize.Small:
-                    return 9;
-            }
-
-            return 11;
+                TextSize.ExtraLarge => 24,
+                TextSize.Large => 18,
+                TextSize.Medium => 14,
+                TextSize.Default => 11,
+                TextSize.Small => 9,
+                _ => 11
+            };
         }
     }
 }

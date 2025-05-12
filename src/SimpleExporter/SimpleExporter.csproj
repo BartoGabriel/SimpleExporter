@@ -1,21 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
     <Authors>Gabriel Bartolazzi</Authors>
     <Company>BechIT</Company>
     <Description>Simple Exporter is an easy report library that generate reports (Excel, CSV, PDF, etc)  from any IEnumerable datasource.
 Simple Exporter allows defining the structure of the reports from a simple JSON or a dotnet object.</Description>
-    <AssemblyVersion>0.1.1.0</AssemblyVersion>
-    <FileVersion>0.1.1.0</FileVersion>
-    <Version>0.1.1</Version>
+    <AssemblyVersion>0.2.0.0</AssemblyVersion>
+    <FileVersion>0.2.0.0</FileVersion>
+    <Version>0.2.0</Version>
     <PackageLicenseUrl>https://github.com/BartoGabriel/SimpleExporter/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/BartoGabriel/SimpleExporter</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BartoGabriel/SimpleExporter</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
 </Project>
